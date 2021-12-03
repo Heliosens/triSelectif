@@ -14,6 +14,10 @@ let dustbin = [
     "url('dustImg/brownDust.png')",
 ];
 
+let waste = [
+    "url('waste/bag01.jpg')",
+]
+
 for(let i = 0 ; i < dustFrame.length ; i++){
     dustFrame[i].style.backgroundImage = dustbin[i];
 }
