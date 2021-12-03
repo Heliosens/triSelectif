@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    width: 100%;
+    font-size: 2vw;
+    text-align: center;
+    background: #106900;
+}
+
+main, a, #waste, #dustFrame{
+    display: flex;
+}
+
+main, a, #waste {
+    flex-direction: column;
+    align-items: center;
+}
+
+main {
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+}
+
+main > div {
+    flex-basis: 10%;
+}
+h1, p, a, #waste, #dustFrame {
+    margin: 2rem;
+    background: white;
+    padding: 1rem;
+}
+
+a {
+    text-decoration-line: none;
+}
+
+a i {
+    font-size: 7vw;
+}
+
+#waste {
+    width: 25%;
+    flex-basis: 25%;
+    justify-content: center;
+}
+
+#dustFrame {
+    width: 100%;
+    background: white;
+    justify-content: space-between;
+}
+
+#dustFrame div {
+    width: 20%;
+    padding-bottom: 20%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+@media screen and (max-width: 800px) {
+    body {
+        font-size: 4vw;
+    }
+
+    main {
+        width: 100%;
+    }
+
+    #waste {
+        width: 40%;
+        flex-basis: 25%;
+    }
+}
+
