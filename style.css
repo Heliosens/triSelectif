@@ -20,12 +20,23 @@ body {
 
 main, section, section div, a{
     display: flex;
-    border: 1px dashed red;
 }
 
-main, #waste {
+main, #waste, a {
     flex-direction: column;
     align-items: center;
+}
+
+a {
+    text-decoration-line: none;
+}
+
+a span {
+    margin: 1rem 0;
+}
+
+a i {
+    font-size: 10vw;
 }
 
 main {
@@ -38,9 +49,20 @@ main {
 }
 
 #waste div {
-    flex-basis: 50%;
     width: 100%;
+    flex-basis: 65%;
     justify-content: center;
+    border: 1px dashed black;
+}
+
+#waste a {
+    width: 100%;
+    font-size: 2vw;
+}
+
+h1, p {
+    background: white;
+    margin: 1rem;
 }
 
 #dustFrame {
@@ -54,5 +76,6 @@ main {
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
+
 }
 
