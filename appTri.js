@@ -17,30 +17,37 @@ let dustbin = [
     "url('dustImg/brownDust.png')",
 ];
 
-let waste = [
-    [0, "url('waste/blue/cardboard.jpg')"],
-
-    [1, "url('waste/blue/cardboard01.jpg')"],
-    [1, "url('waste/blue/paper01.jpg')"],
-
-    [2, "url('waste/brown/bag01.jpg')"],
-    [2, "url('waste/brown/food01.jpg')"],
-    [2, "url('waste/brown/food02.jpg')"],
-
-    [3, "url('waste/green/bocal.png')"],
-    [3, "url('waste/green/glassBottle.jpg')"],
-
-    [4, "url('waste/yellow/bottle01.jpg')"],
-]
-
 for(let i = 0 ; i < dustFrame.length ; i++){
     dustFrame[i].style.backgroundImage = dustbin[i];
 }
+
+let waste = [
+    [0, "url('waste/yellow/bottle01.jpg')"],
+    [1, "url('waste/green/bocal.png')"],
+    [1, "url('waste/green/glassBottle.jpg')"],
+    [2, "url('waste/blue/cardboard.jpg')"],
+    [2, "url('waste/blue/cardboard01.jpg')"],
+    [2, "url('waste/blue/paper01.jpg')"],
+    [3, "url('waste/brown/bag01.jpg')"],
+    [3, "url('waste/brown/food01.jpg')"],
+    [3, "url('waste/brown/food02.jpg')"],
+]
+
+let test = [0,1,2,3,4,5,6,7,8,9];
+console.log(waste);
 
 recycle.addEventListener("click", function (event){
     event.preventDefault();
     recycle.style.display = 'none';
     // give waste background = random waste
     let item = Math.floor(Math.random() * waste.length);
-    wasteFrame.style.backgroundImage = waste[item];
+    wasteFrame.style.backgroundImage = waste[item][1];
+    // shake array
+    for(let i = 0 ; i < waste.length ; i++){
+        let tempo = waste[i];
+        let x = Math.floor(Math.random() * waste.length);
+        waste[i] = waste[x];
+        waste[x] = tempo;
+    }
+    console.log(waste);
 })
