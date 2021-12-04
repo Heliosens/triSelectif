@@ -1,9 +1,10 @@
-// get a for start button
+// get <a> for start button
 let recycle = document.querySelector("a");
 
 // get waste frame
 let wasteFrame = document.getElementById("waste").querySelector('div');
 
+// screen height
 let main = document.querySelector("main");
 main.style.height = innerHeight + "px";
 
@@ -23,6 +24,7 @@ for(let i = 0 ; i < dustFrame.length ; i++){
 
 let waste = [
     [0, "url('waste/yellow/bottle01.jpg')"],
+    [0, "url('waste/yellow/assouplissant.jpg)"],
     [1, "url('waste/green/bocal.png')"],
     [1, "url('waste/green/glassBottle.jpg')"],
     [2, "url('waste/blue/cardboard.jpg')"],
@@ -33,7 +35,6 @@ let waste = [
     [3, "url('waste/brown/food02.jpg')"],
 ]
 
-let test = [0,1,2,3,4,5,6,7,8,9];
 console.log(waste);
 
 recycle.addEventListener("click", function (event){
