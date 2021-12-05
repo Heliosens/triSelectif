@@ -86,7 +86,7 @@ h1, p, a span {
 /*************/
 
 #nextPage {
-    /*display: none;*/
+    display: none;
     flex-direction: column;
     align-items: center;
     padding-bottom: 1rem;
@@ -94,6 +94,13 @@ h1, p, a span {
 
 #nextPage input {
     width: 20%;
+}
+
+#result > span {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    font-size: 3vw;
 }
 
 #result {
@@ -114,31 +121,32 @@ h1, p, a span {
 
 .dustbinUsed, .rightDustbin {
     flex-basis: 33%;
+    background-size: contain;
 }
 
 .currentWaste, .dustbinUsed, .rightDustbin {
     width: 100%;
-
     background-position: center;
-    background-size: contain;
     background-repeat: no-repeat;
+}
 
+.currentWaste {
+    background-size: 70%;
 }
 
 .currentWaste {
     width: 100%;
     height: 33%;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 2%;
 
-    animation-name: toTheGoodOne;
-    animation-duration: 4s;
+    /*animation-name: toTheGoodOne;*/
+    animation-duration: 3s;
     animation-fill-mode: forwards;
 }
 
 @keyframes toTheGoodOne {
     to {
-      top: 50%;
+      top: 70%;
     }
 }

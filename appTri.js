@@ -16,6 +16,9 @@ let result = document.getElementById('result');
 // get dust frame
 let dropZone = document.getElementsByClassName('dropzone');
 
+// get count div
+let displayCount = document.querySelector('#displayCount');
+
 let dustbin = [
     "url('dustImg/yellowDust.png')",
     "url('dustImg/greenDust.png')",
@@ -41,71 +44,41 @@ let waste = [
 ]
 
 // beginning state
-let line;
-let count;
-
-restart();
+let line = 0;
+let count = 0;
 
 // display none start button
 start.addEventListener('click', function (event){
+    restart();
     event.preventDefault();
     start.style.display = 'none';
-    restart();
-    // display waste background first line
     wasteFrame.style.backgroundImage = waste[line][1];
-});
-
-// listen dustbin
-for(let i = 0 ; i < dropZone.length ; i++){
-    dropZone[i].addEventListener('click', function (){
-
-        // in game
-        if(line < 10){
-            // line => result i background
-
-            wasteFrame.style.backgroundImage = waste[line][1];
-            // create element
-            let resultDiv = document.createElement('div');
-            let selectW = document.createElement('div');
-            let selectDb = document.createElement('div');
-            let goodOne = document.createElement('div');
-
-            // set class name
-            selectW.className = "currentWaste";
-            goodOne.className = "rightDustbin";
-            selectDb.className = "dustbinUsed";
-
-            // set background
-            selectDb.style.backgroundImage = dustbin[i];
-            selectW.style.backgroundImage = waste[line][1];
-            goodOne.style.backgroundImage = dustbin[waste[line][0]];
-
-            resultDiv.appendChild(selectDb);
-            resultDiv.appendChild(selectW);
-            resultDiv.appendChild(goodOne);
-
-            result.appendChild(resultDiv);
-
-            // is the right dustbin ?
-            if(i === waste[line][0]){
-                count++;
+    // listen dustbin
+    for(let i = 0 ; i < dropZone.length ; i++){
+        // (first) line = (first) waste
+        dropZone[i].addEventListener('click', function (){
+            // in game
+            if(line < 9){
+                inGame(i);
+                // next waste
+                line++;
+                wasteFrame.style.backgroundImage = waste[line][1];
             }
-        }
-        else {
-            main.style.display = "none";
-            nextPage.style.display = "flex";
-            console.log(count + " points");
-        }
-        // next waste
-        line++;
-    })
-}
+            else {
+                inGame(i);
+                main.style.display = "none";
+                nextPage.style.display = "flex";
+                displayCount.innerHTML = count + " sur 10";
+                console.log(count + " points");
+            }
+        })
+    }
+});
 
 function restart () {
     line = 0;
     // count point
     count = 0;
-    loose = 0
     // set first screen
     main.style.display = "flex";
     nextPage.style.display = "none";
@@ -119,7 +92,35 @@ function restart () {
     }
 }
 
-// affect animation
-// selectW.style.animationName = "toTheGoodOne";
+function inGame (i){
+    // each time create elements
+    let resultDiv = document.createElement('div');
+    let selectW = document.createElement('div');
+    let selectDb = document.createElement('div');
+    let goodOne = document.createElement('div');
 
-// todo affect background to result div
+    // set class name
+    selectW.className = "currentWaste";
+    goodOne.className = "rightDustbin";
+    selectDb.className = "dustbinUsed";
+
+    // set background
+    selectDb.style.backgroundImage = dustbin[i];
+    selectW.style.backgroundImage = waste[line][1];
+
+    resultDiv.appendChild(selectDb);
+    resultDiv.appendChild(selectW);
+
+    // is the right dustbin ?
+    if(i === waste[line][0]){
+        count++;
+    }
+    else {
+        goodOne.style.backgroundImage = dustbin[waste[line][0]];
+        selectW.style.animationName = "toTheGoodOne";
+        resultDiv.appendChild(goodOne);
+    }
+    // end game
+    result.appendChild(resultDiv);
+}
+
