@@ -14,7 +14,7 @@ nextPage.style.height = innerHeight + "px";
 let result = document.getElementById('result');
 
 // get dust frame
-let dustFrame = document.getElementsByClassName('dropzone');
+let dropZone = document.getElementsByClassName('dropzone');
 
 let dustbin = [
     "url('dustImg/yellowDust.png')",
@@ -23,8 +23,8 @@ let dustbin = [
     "url('dustImg/brownDust.png')",
 ];
 
-for(let i = 0 ; i < dustFrame.length ; i++){
-    dustFrame[i].style.backgroundImage = dustbin[i];
+for(let i = 0 ; i < dropZone.length ; i++){
+    dropZone[i].style.backgroundImage = dustbin[i];
 }
 
 let waste = [
@@ -43,77 +43,79 @@ let waste = [
 // beginning state
 let line;
 let count;
-let loose;
 
 restart();
 
-start.addEventListener('click', ()=>restart);
+// display none start button
+start.addEventListener('click', function (event){
+    event.preventDefault();
+    start.style.display = 'none';
+    restart();
+    // display waste background first line
+    wasteFrame.style.backgroundImage = waste[line][1];
+});
 
-function restart (){
-    main.style.display = "flex";
-    nextPage.style.display = "none";
+// listen dustbin
+for(let i = 0 ; i < dropZone.length ; i++){
+    dropZone[i].addEventListener('click', function (){
 
-    // shake array
-    for(let i = 0 ; i < waste.length ; i++){
-        let tempo = waste[i];
-        let x = Math.floor(Math.random() * waste.length);
-        waste[i] = waste[x];
-        waste[x] = tempo;
-    }
+        // in game
+        if(line < 10){
+            // line => result i background
 
-    // display none start button
-    line = 0;
-    start.addEventListener("click", function (event){
-        event.preventDefault();
-        start.style.display = 'none';
+            wasteFrame.style.backgroundImage = waste[line][1];
+            // create element
+            let resultDiv = document.createElement('div');
+            let selectW = document.createElement('div');
+            let selectDb = document.createElement('div');
+            let goodOne = document.createElement('div');
 
-        // display waste background
-        wasteFrame.style.backgroundImage = waste[line][1];
+            // set class name
+            selectW.className = "currentWaste";
+            goodOne.className = "rightDustbin";
+            selectDb.className = "dustbinUsed";
 
-    })
+            // set background
+            selectDb.style.backgroundImage = dustbin[i];
+            selectW.style.backgroundImage = waste[line][1];
+            goodOne.style.backgroundImage = dustbin[waste[line][0]];
 
-    //point counter
-    count = 0;
-    loose = 0
-    // listen dustbin
-    for(let i = 0 ; i < dustFrame.length ; i++){
-        dustFrame[i].addEventListener('click', function (){
+            resultDiv.appendChild(selectDb);
+            resultDiv.appendChild(selectW);
+            resultDiv.appendChild(goodOne);
+
+            result.appendChild(resultDiv);
 
             // is the right dustbin ?
             if(i === waste[line][0]){
                 count++;
-
             }
+        }
+        else {
+            main.style.display = "none";
+            nextPage.style.display = "flex";
+            console.log(count + " points");
+        }
+        // next waste
+        line++;
+    })
+}
 
+function restart () {
+    line = 0;
+    // count point
+    count = 0;
+    loose = 0
+    // set first screen
+    main.style.display = "flex";
+    nextPage.style.display = "none";
 
-            // next waste
-            line++;
-            let resultDiv = document.createElement('div');
-            result.prepend(resultDiv);
-            // end game
-            if(line < 10){
-                wasteFrame.style.backgroundImage = waste[line][1];
-
-                // next page
-                // create element for each line
-                // create inner element
-                let selectDb = document.createElement('div');
-                let selectW = document.createElement('div');
-                let goodOne = document.createElement('div');
-                selectDb.className = "dustbinUsed";
-                selectW.className = "currentWaste";
-                goodOne.className = "rightDustbin";
-                resultDiv.appendChild(selectDb);
-                resultDiv.appendChild(selectW);
-                resultDiv.appendChild(goodOne);
-            }
-            else {
-                main.style.display = "none";
-                nextPage.style.display = "flex";
-
-                console.log(count + " points");
-            }
-        })
+    // shake array
+    for (let i = 0; i < waste.length; i++) {
+        let tempo = waste[i];
+        let x = Math.floor(Math.random() * waste.length);
+        waste[i] = waste[x];
+        waste[x] = tempo;
     }
 }
 

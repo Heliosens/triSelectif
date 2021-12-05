@@ -71,7 +71,7 @@ h1, p, a span {
 .dropzone {
     padding-top: 1rem;
     flex-basis: 25%;
-    background-size: 54%;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -79,11 +79,12 @@ h1, p, a span {
 .dropzone:hover {
     background-color: green;
     padding-bottom: 2rem;
-    background-size: 56%;
 }
+
   /*************/
  /* next page */
 /*************/
+
 #nextPage {
     /*display: none;*/
     flex-direction: column;
@@ -98,6 +99,7 @@ h1, p, a span {
 #result {
     width: 100%;
     flex-basis: 96%;
+    justify-content: space-between;
 }
 
 #result > div {
@@ -116,7 +118,11 @@ h1, p, a span {
 
 .currentWaste, .dustbinUsed, .rightDustbin {
     width: 100%;
-    border: 1px solid black;
+
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+
 }
 
 .currentWaste {
@@ -125,7 +131,6 @@ h1, p, a span {
     position: absolute;
     top: 0;
     left: 0;
-    border: red 1px dashed;
 
     animation-name: toTheGoodOne;
     animation-duration: 4s;
@@ -134,6 +139,6 @@ h1, p, a span {
 
 @keyframes toTheGoodOne {
     to {
-      top: 67%;
+      top: 50%;
     }
 }
