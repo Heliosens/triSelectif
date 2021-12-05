@@ -18,11 +18,7 @@ body {
     background: #106900;
 }
 
-main {
-    display: none;
-}
-
-section, section div, a{
+main, section, section div, a{
     display: flex;
 }
 
@@ -41,15 +37,18 @@ main, #waste, a {
     flex-basis: 70%;
     justify-content: center;
     background-image: url("tri-selectif.jpg");
-    background-position: center;
+    background-position: center top;
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+a {
+    text-decoration-line: none;
 }
 
 #waste a {
     width: 100%;
     font-size: 2vw;
-    text-decoration-line: none;
 }
 
 a span {
@@ -69,11 +68,18 @@ h1, p, a span {
     padding-bottom: 1rem;
 }
 
-#dustFrame div {
+.dropzone {
+    padding-top: 1rem;
     flex-basis: 25%;
-    background-size: contain;
+    background-size: 54%;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.dropzone:hover {
+    background-color: green;
+    padding-bottom: 2rem;
+    background-size: 56%;
 }
   /*************/
  /* next page */
@@ -92,7 +98,6 @@ h1, p, a span {
 #result {
     width: 100%;
     flex-basis: 96%;
-
 }
 
 #result > div {

@@ -43,8 +43,16 @@ let waste = [
 // beginning state
 let line;
 let count;
+let loose;
+
 restart();
+
+start.addEventListener('click', ()=>restart);
+
 function restart (){
+    main.style.display = "flex";
+    nextPage.style.display = "none";
+
     // shake array
     for(let i = 0 ; i < waste.length ; i++){
         let tempo = waste[i];
@@ -66,44 +74,50 @@ function restart (){
 
     //point counter
     count = 0;
+    loose = 0
     // listen dustbin
     for(let i = 0 ; i < dustFrame.length ; i++){
         dustFrame[i].addEventListener('click', function (){
 
             // is the right dustbin ?
-            i === waste[line][0] ? count++ : null;
+            if(i === waste[line][0]){
+                count++;
+
+            }
+
 
             // next waste
             line++;
-
+            let resultDiv = document.createElement('div');
+            result.prepend(resultDiv);
             // end game
-            line < 10 ? wasteFrame.style.backgroundImage = waste[line][1]
-                : console.log(count + " points");
+            if(line < 10){
+                wasteFrame.style.backgroundImage = waste[line][1];
 
+                // next page
+                // create element for each line
+                // create inner element
+                let selectDb = document.createElement('div');
+                let selectW = document.createElement('div');
+                let goodOne = document.createElement('div');
+                selectDb.className = "dustbinUsed";
+                selectW.className = "currentWaste";
+                goodOne.className = "rightDustbin";
+                resultDiv.appendChild(selectDb);
+                resultDiv.appendChild(selectW);
+                resultDiv.appendChild(goodOne);
+            }
+            else {
+                main.style.display = "none";
+                nextPage.style.display = "flex";
 
+                console.log(count + " points");
+            }
         })
     }
 }
 
-// next page
-// create element for each line
-let resultDiv = document.createElement('div');
-// create inner element
-let selectDb = document.createElement('div');
-let selectW = document.createElement('div');
-let goodOne = document.createElement('div');
-
-selectDb.className = "dustbinUsed";
-selectW.className = "currentWaste";
-goodOne.className = "rightDustbin";
-
 // affect animation
-selectW.style.animationName = "toTheGoodOne";
-
-resultDiv.appendChild(selectDb);
-resultDiv.appendChild(selectW);
-resultDiv.appendChild(goodOne);
-
-result.prepend(resultDiv);
+// selectW.style.animationName = "toTheGoodOne";
 
 // todo affect background to result div
