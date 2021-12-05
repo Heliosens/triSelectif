@@ -12,8 +12,8 @@
     <main>
         <section id="waste">
             <h1>Tri sélectif</h1>
-            <p>Choisissez la bonne poubelle</p>
-            <div>
+            <p>Par un click, choisissez la bonne poubelle</p>
+            <div draggable="true" >
                 <a href="">
                     <span>Start</span>
                 </a>
@@ -21,12 +21,25 @@
         </section>
 
         <section id="dustFrame">
-            <div></div>     <!-- yellow -->
-            <div></div>     <!-- green -->
-            <div></div>     <!-- blue -->
-            <div></div>     <!-- brown -->
+            <div class="dropzone" ></div>     <!-- yellow -->
+            <div class="dropzone" ></div>     <!-- green -->
+            <div class="dropzone" ></div>     <!-- blue -->
+            <div class="dropzone" ></div>     <!-- brown -->
         </section>
     </main>
+
+    <section id="nextPage">
+        <div id="result">
+            <div>
+                <div class="dustbinUsed">
+                    <div class="currentWaste"></div>
+                </div>
+
+                <div class="rightDustbin"></div>
+            </div>
+        </div>
+    </section>
+
     <script src="appTri.js"></script>
 </body>
 </html>

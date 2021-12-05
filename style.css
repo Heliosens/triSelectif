@@ -18,7 +18,11 @@ body {
     background: #106900;
 }
 
-main, section, section div, a{
+main {
+    display: none;
+}
+
+section, section div, a{
     display: flex;
 }
 
@@ -72,3 +76,46 @@ h1, p, a span {
     background-repeat: no-repeat;
 }
 
+/* next page */
+#nextPage {
+    /*display: none;*/
+}
+
+#result {
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+#result div {
+    flex-basis: 9%;
+
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.dustbinUsed {
+    position: relative;
+}
+
+.currentWaste, .dustbinUsed, .rightDustbin {
+    padding-bottom: 100%;
+    border: 1px solid black;
+}
+
+.currentWaste {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: darkred 1px dashed;
+
+    animation-name: toTheGoodOne;
+    animation-duration: 4s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes toTheGoodOne {
+    to {
+      top : 200%;
+    }
+}
