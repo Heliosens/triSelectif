@@ -7,9 +7,11 @@ let wasteFrame = document.getElementById("waste").querySelector('div');
 // screen height
 let main = document.querySelector("main");
 main.style.height = innerHeight + "px";
-let resultScreen = document.getElementById('result');
-resultScreen.style.height = innerHeight + "px";
+let nextPage = document.getElementById('nextPage');
+nextPage.style.height = innerHeight + "px";
 
+// get result
+let result = document.getElementById('result');
 
 // get dust frame
 let dustFrame = document.getElementsByClassName('dropzone');
@@ -77,15 +79,31 @@ function restart (){
             // end game
             line < 10 ? wasteFrame.style.backgroundImage = waste[line][1]
                 : console.log(count + " points");
-            // next page
-            // create element for each line
-            let resultDiv = document.createElement('div');
-            let selectDb = document.createElement('div');
-            selectDb.className = "dustbinUsed";
-            resultDiv.appendChild(selectDb);
 
 
         })
     }
 }
 
+// next page
+// create element for each line
+let resultDiv = document.createElement('div');
+// create inner element
+let selectDb = document.createElement('div');
+let selectW = document.createElement('div');
+let goodOne = document.createElement('div');
+
+selectDb.className = "dustbinUsed";
+selectW.className = "currentWaste";
+goodOne.className = "rightDustbin";
+
+// affect animation
+selectW.style.animationName = "toTheGoodOne";
+
+resultDiv.appendChild(selectDb);
+resultDiv.appendChild(selectW);
+resultDiv.appendChild(goodOne);
+
+result.prepend(resultDiv);
+
+// todo affect background to result div
