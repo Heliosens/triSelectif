@@ -19,6 +19,7 @@ let dropZone = document.getElementsByClassName('dropzone');
 // get count div
 let displayCount = document.querySelector('#displayCount');
 
+// img of the dustbin
 let dustbin = [
     "url('dustImg/yellowDust.png')",
     "url('dustImg/greenDust.png')",
@@ -26,10 +27,12 @@ let dustbin = [
     "url('dustImg/brownDust.png')",
 ];
 
+// affect img to dustbin
 for(let i = 0 ; i < dropZone.length ; i++){
     dropZone[i].style.backgroundImage = dustbin[i];
 }
 
+// create array of waste with dustbin index
 let waste = [
     [0, "url('waste/yellow/bottle01.jpg')"],
     [0, "url('waste/yellow/assouplissant.jpg')"],
@@ -69,12 +72,14 @@ start.addEventListener('click', function (event){
                 main.style.display = "none";
                 nextPage.style.display = "flex";
                 displayCount.innerHTML = count + " sur 10";
-                console.log(count + " points");
             }
         })
     }
 });
 
+/**
+ * reset values
+ */
 function restart () {
     line = 0;
     // count point
@@ -92,6 +97,11 @@ function restart () {
     }
 }
 
+/**
+ *  create elements to affect user choice and waste, and right answers
+ *  affect animation to mistakes
+ * @param i
+ */
 function inGame (i){
     // each time create elements
     let resultDiv = document.createElement('div');
